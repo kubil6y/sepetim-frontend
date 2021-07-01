@@ -13,7 +13,7 @@
 }
 
 .cst-input {
-  @apply w-full p-3 text-lg font-light border border-gray-200 focus:outline-none focus:border-gray-500 transition-colors;
+  @apply w-full p-3 text-lg font-light border border-gray-200 focus:outline-none focus:border-gray-500 transition-colors duration-300;
 }
 
 .cst-btn {
@@ -24,12 +24,20 @@
   @apply w-full px-5 mx-auto max-w-screen-xl xl:px-0;
 }
 
+.cst-form-container {
+  @apply w-full px-5 mx-auto max-w-screen-sm xl:px-0;
+}
+
 .cst-title {
   @apply text-2xl font-semibold;
 }
 
 .cst-transition {
   @apply transition-colors duration-300;
+}
+
+.cst-link {
+  @apply text-yellow-500 hover:text-yellow-600 transition-colors duration-300;
 }
 
 @tailwind utilities;
