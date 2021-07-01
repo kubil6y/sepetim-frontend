@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AiFillUnlock } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { Logo } from '../components';
 import { paths } from '../constants';
 
 export const VerificationPage = () => {
@@ -17,10 +18,20 @@ export const VerificationPage = () => {
         <title>Sepetim | Verification</title>
       </Helmet>
       <div className='flex flex-col items-center justify-center w-screen h-screen px-2 -mt-16'>
+        <div className='flex items-center py-12 space-x-5'>
+          <Logo size='lg' />
+          <div className='space-y-3'>
+            <p className='text-3xl lg:text-5xl'>Sepetim</p>
+            <p className='text-right text-yellow-500 underline lg:text-2xl text:lg'>
+              Verification
+            </p>
+          </div>
+        </div>
+
         <div className='w-20 w-full md:max-w-md space-y-3'>
           <h1 className='cst-title'>Account Verification</h1>
 
-          <h3 className='text-gray-600 text-xs'>
+          <h3 className='text-xs text-gray-600'>
             Please enter the verification code, you have received in your email.
           </h3>
 

@@ -32,6 +32,9 @@ export const App = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const { data, error } = useMe();
 
+  // TODO
+  console.log(isLoggedIn);
+
   // Checking for invalid token
   if (error?.message === 'invalid token') {
     localStorage.removeItem(LOCALSTORAGE_TOKEN);

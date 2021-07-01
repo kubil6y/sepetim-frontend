@@ -28,7 +28,7 @@ export const RegisterPage = () => {
       createUser: { ok },
     } = data;
     if (ok) {
-      history.push(paths.home);
+      history.push(paths.login);
     }
   };
   const [createUser, { data: createUserResults, loading }] = useMutation<
@@ -74,7 +74,7 @@ export const RegisterPage = () => {
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
           {/* FIRST NAME */}
           <div className='cst-input-group'>
-            <div className='cst-title'>First Name</div>
+            <div className='cst-title'>First Name*</div>
             <input
               {...register('firstName', {
                 required: 'Please enter your first name',
@@ -90,7 +90,7 @@ export const RegisterPage = () => {
 
           {/* LAST NAME */}
           <div className='cst-input-group'>
-            <div className='cst-title'>Last Name</div>
+            <div className='cst-title'>Last Name*</div>
             <input
               {...register('lastName', {
                 required: 'Please enter your last name',
@@ -105,7 +105,7 @@ export const RegisterPage = () => {
           </div>
           {/* USERNAME */}
           <div className='cst-input-group'>
-            <div className='cst-title'>Username</div>
+            <div className='cst-title'>Username*</div>
             <input
               {...register('username', {
                 required: 'Please enter your username',
@@ -121,7 +121,7 @@ export const RegisterPage = () => {
 
           {/* EMAIL */}
           <div className='cst-input-group'>
-            <div className='cst-title'>Email</div>
+            <div className='cst-title'>Email*</div>
             <input
               {...register('email', {
                 required: 'Please enter your email',
@@ -141,7 +141,7 @@ export const RegisterPage = () => {
 
           {/* PASSWORD */}
           <div className='cst-input-group'>
-            <div className='cst-title'>Password</div>
+            <div className='cst-title'>Password*</div>
             <div className='flex items-center justify-between'>
               <input
                 {...register('password', {
@@ -170,7 +170,7 @@ export const RegisterPage = () => {
 
           {/* ADDRESS */}
           <div className='cst-input-group'>
-            <div className='cst-title'>Address</div>
+            <div className='cst-title'>Address*</div>
             <textarea
               {...register('address', {
                 required: 'Please enter your address',
