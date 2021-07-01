@@ -1,4 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
 /* ./src/index.css */
 @tailwind base;
 @tailwind components;
+
+.cst-input-group {
+  @apply space-y-2 w-full;
+}
+
+.cst-error-message {
+  @apply text-xs font-bold tracking-wide text-red-500;
+}
+
+.cst-input {
+  @apply w-full p-3 text-lg font-light border border-gray-200 focus:outline-none focus:border-gray-500 transition-colors;
+}
+
+.cst-btn {
+  @apply w-full px-5 py-3 mt-3 text-lg font-medium text-white capitalize bg-red-500 border hover:bg-red-600 transition-colors disabled:bg-gray-200 focus:outline-none focus:border-gray-500 duration-300;
+}
+
+.cst-container {
+  @apply w-full px-5 mx-auto max-w-screen-xl xl:px-0;
+}
+
+.cst-title {
+  @apply text-2xl font-semibold;
+}
+
+.cst-transition {
+  @apply transition-colors duration-300;
+}
+
 @tailwind utilities;
