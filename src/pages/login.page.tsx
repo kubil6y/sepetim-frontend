@@ -34,9 +34,7 @@ export const LoginPage = () => {
           <Logo size='lg' />
           <div className='space-y-3'>
             <p className='lg:text-5xl text-3xl'>Sepetim</p>
-            <p className='text-right text-gray-500 lg:text-2xl text:lg'>
-              Login
-            </p>
+            <p className='text-right text-red-500 lg:text-2xl text:lg'>Login</p>
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
