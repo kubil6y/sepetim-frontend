@@ -6,20 +6,16 @@ import {
   VerificationPage,
 } from './pages';
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import { Banner, Header, LoggedOutRoute } from './components';
+import { Route, Switch } from 'react-router-dom';
+import { Banner, LoggedOutRoute } from './components';
 import { useMe } from './hooks';
 import { LOCALSTORAGE_TOKEN, paths } from './constants';
 import { isLoggedInVar } from './apollo';
 import { useReactiveVar } from '@apollo/client';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const commonRoutes = [
   { id: 0, path: paths.home, component: <HomePage />, exact: true },
-  {
-    id: 1,
-    path: paths.verifyAccount,
-    component: <VerificationPage />,
-  },
 ];
 
 const loggedOutRoutes = [
@@ -27,20 +23,28 @@ const loggedOutRoutes = [
   { id: 101, path: paths.register, component: <RegisterPage /> },
 ];
 
+const protectedRoutes = [
+  {
+    id: 200,
+    path: paths.verifyAccount,
+    component: <VerificationPage />,
+    exact: true,
+  },
+];
+
 export const App = () => {
-  const history = useHistory();
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const { data, error } = useMe();
 
-  // TODO
-  console.log(isLoggedIn);
-
-  // Checking for invalid token
   if (error?.message === 'invalid token') {
-    localStorage.removeItem(LOCALSTORAGE_TOKEN);
     isLoggedInVar(false);
-    history.push(paths.home);
   }
+
+  console.log({
+    error: error?.message,
+    isLoggedIn,
+    isVerified: data?.me?.verified,
+  });
 
   return (
     <div className='text-gray-800'>
@@ -56,9 +60,10 @@ export const App = () => {
             exact={Boolean(exact)}
           />
         ))}
+
         {loggedOutRoutes.map(({ id, path, component, exact }) => (
           <LoggedOutRoute
-            authenticationPath='/'
+            authenticationPath={paths.home}
             key={id}
             path={path}
             component={() => component}
@@ -66,6 +71,16 @@ export const App = () => {
           />
         ))}
 
+        {protectedRoutes.map(({ id, path, component, exact }) => (
+          <ProtectedRoute
+            isAuthenticated={isLoggedIn}
+            authenticationPath={paths.login}
+            key={id}
+            path={path}
+            component={() => component}
+            exact={Boolean(exact)}
+          />
+        ))}
         <Route path='*' component={() => <NotFound />} />
       </Switch>
     </div>

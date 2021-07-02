@@ -11,6 +11,7 @@ import { UserRoleEnum } from "./globalTypes";
 
 export interface UserParts {
   __typename: "User";
+  id: number;
   username: string;
   firstName: string;
   lastName: string;

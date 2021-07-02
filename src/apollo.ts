@@ -7,8 +7,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { baseUrl, LOCALSTORAGE_TOKEN } from './constants';
 
-// default values
-const token = localStorage.getItem(LOCALSTORAGE_TOKEN);
+// INITIAL VALUES
+// without a string, backend will throw jwt malformed error and log it.
+const token = localStorage.getItem(LOCALSTORAGE_TOKEN) || '';
 export const isLoggedInVar = makeVar(Boolean(token));
 export const tokenVar = makeVar(token);
 

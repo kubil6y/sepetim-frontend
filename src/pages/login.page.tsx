@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Logo } from '../components';
+import { Button, ErrorMessage, Logo } from '../components';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Helmet } from 'react-helmet-async';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER_MUTATION } from '../graphql';
+import { LOGIN_USER_MUTATION, ME_QUERY } from '../graphql';
 import { LOCALSTORAGE_TOKEN, paths } from '../constants';
 import { isLoggedInVar, tokenVar } from '../apollo';
 import { Link, useHistory } from 'react-router-dom';
@@ -20,11 +20,22 @@ interface IForm {
 
 export const LoginPage = () => {
   const history = useHistory();
+  // server side error states
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(true);
+
   const onCompleted = (data: loginUserMutation) => {
     const {
-      loginUser: { ok, token },
+      loginUser: { ok, error, token },
     } = data;
+
+    if (error) {
+      setShowErrorMessage(true);
+      setErrorMessage(error);
+    }
+
     if (ok && token) {
+      setErrorMessage('');
       localStorage.setItem(LOCALSTORAGE_TOKEN, token);
       tokenVar(token);
       isLoggedInVar(true);
@@ -32,11 +43,12 @@ export const LoginPage = () => {
     }
   };
 
-  const [loginUser, { data: loginUserMutationResult, loading }] = useMutation<
+  const [loginUser, { loading }] = useMutation<
     loginUserMutation,
     loginUserMutationVariables
   >(LOGIN_USER_MUTATION, {
     onCompleted,
+    //refetchQueries: [{ query: ME_QUERY }],
   });
 
   const [type, setType] = useState('password');
@@ -67,7 +79,7 @@ export const LoginPage = () => {
       <Helmet>
         <title>Sepetim | Login</title>
       </Helmet>
-      <div className='flex flex-col items-center cst-form-container mb-24 '>
+      <div className='flex flex-col items-center mb-24 cst-form-container '>
         <div className='flex items-center py-12 space-x-5'>
           <Logo size='lg' />
           <div className='space-y-3'>
@@ -77,6 +89,17 @@ export const LoginPage = () => {
             </p>
           </div>
         </div>
+
+        {errorMessage && (
+          <div className='w-full my-4'>
+            <ErrorMessage
+              message={errorMessage}
+              show={showErrorMessage}
+              setShow={setShowErrorMessage}
+            />
+          </div>
+        )}
+
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
           <div className='cst-input-group'>
             <div className='cst-title'>Credentials</div>

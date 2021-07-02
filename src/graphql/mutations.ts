@@ -18,3 +18,12 @@ export const LOGIN_USER_MUTATION = gql`
     }
   }
 `;
+
+export const VERIFY_EMAIL_MUTATION = gql`
+  mutation verifyEmailMutation($input: VerifyEmailInput!) {
+    verifyEmail(input: $input) {
+      ok
+      error
+    }
+  }
+`;

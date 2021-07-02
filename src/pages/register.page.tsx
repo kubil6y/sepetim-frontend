@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Logo } from '../components';
+import { Button, ErrorMessage, Logo } from '../components';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
@@ -23,15 +23,26 @@ interface IForm {
 
 export const RegisterPage = () => {
   const history = useHistory();
+  // server side error states
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(true);
+
   const onCompleted = (data: createUserMutation) => {
     const {
-      createUser: { ok },
+      createUser: { ok, error },
     } = data;
+
+    if (error) {
+      setShowErrorMessage(true);
+      setErrorMessage(error);
+    }
+
     if (ok) {
+      setErrorMessage('');
       history.push(paths.login);
     }
   };
-  const [createUser, { data: createUserResults, loading }] = useMutation<
+  const [createUser, { loading }] = useMutation<
     createUserMutation,
     createUserMutationVariables
   >(CREATE_USER_MUTATION, { onCompleted });
@@ -71,6 +82,17 @@ export const RegisterPage = () => {
             </p>
           </div>
         </div>
+
+        {errorMessage && (
+          <div className='w-full my-4'>
+            <ErrorMessage
+              message={errorMessage}
+              show={showErrorMessage}
+              setShow={setShowErrorMessage}
+            />
+          </div>
+        )}
+
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
           {/* FIRST NAME */}
           <div className='cst-input-group'>
