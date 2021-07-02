@@ -7,3 +7,4 @@ export * from './Banner';
 export * from './ErrorMessage';
 export * from './Circle';
 export * from './Search';
+export * from './Backdrop';

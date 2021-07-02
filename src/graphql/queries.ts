@@ -10,12 +10,26 @@ export const ME_QUERY = gql`
   ${USER_FRAGMENT}
 `;
 
-export const search_restaurant_query = gql`
+export const SEARCH_RESTAURANT_QUERY = gql`
   query searchRestaurantQuery($input: SearchRestaurantInput!) {
     searchRestaurant(input: $input) {
       ok
       error
-      restaurants
+      restaurants {
+        id
+        name
+        logoImg
+
+        category {
+          name
+        }
+
+        restaurantRating {
+          service
+          speed
+          taste
+        }
+      }
     }
   }
 `;

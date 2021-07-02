@@ -26,6 +26,10 @@ export interface LoginInput {
   password: string;
 }
 
+export interface SearchRestaurantInput {
+  query: string;
+}
+
 export interface VerifyEmailInput {
   code: string;
 }

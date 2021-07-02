@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AiFillUnlock } from 'react-icons/ai';
@@ -24,15 +24,14 @@ export const VerificationPage = () => {
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<IForm>({ mode: 'onChange' });
   const { data: userData } = useMe();
   const client = useApolloClient();
   const history = useHistory();
 
+  // for button borders
   const [isFocused, setIsFocused] = useState(false);
-  //TODO
-  console.log(isFocused);
   // server side error message states
   const [errorMessage, setErrorMessage] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(true);
@@ -92,7 +91,7 @@ export const VerificationPage = () => {
       }
     };
     main();
-  }, [userData]);
+  }, [userData, history]);
   return (
     <>
       <Helmet>

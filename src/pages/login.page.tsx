@@ -4,7 +4,7 @@ import { Button, ErrorMessage, Logo } from '../components';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Helmet } from 'react-helmet-async';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER_MUTATION, ME_QUERY } from '../graphql';
+import { LOGIN_USER_MUTATION } from '../graphql';
 import { LOCALSTORAGE_TOKEN, paths } from '../constants';
 import { isLoggedInVar, tokenVar } from '../apollo';
 import { Link, useHistory } from 'react-router-dom';
