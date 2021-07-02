@@ -13,11 +13,11 @@
 }
 
 .cst-input {
-  @apply w-full p-3 text-lg font-light border border-gray-200 focus:outline-none focus:border-gray-500 transition-colors duration-300;
+  @apply w-full p-3 text-lg font-light border border-gray-200 focus:outline-none focus:border-gray-500 transition-colors duration-500;
 }
 
 .cst-btn {
-  @apply w-full px-5 py-3 mt-3 text-lg font-medium text-white capitalize bg-red-500 border hover:bg-red-600 transition-colors disabled:bg-gray-200 focus:outline-none focus:border-gray-500 duration-300;
+  @apply w-full px-5 py-3 mt-3 text-lg font-medium text-white capitalize bg-red-500 border hover:bg-red-600 transition-colors disabled:bg-gray-200 focus:outline-none focus:border-gray-500 duration-500;
 }
 
 .cst-container {
@@ -33,11 +33,11 @@
 }
 
 .cst-transition {
-  @apply transition-colors duration-300;
+  @apply transition-colors duration-500;
 }
 
 .cst-link {
-  @apply text-yellow-500 hover:text-yellow-600 transition-colors duration-300;
+  @apply text-yellow-500 hover:text-yellow-600 transition-colors duration-500;
 }
 
 @tailwind utilities;

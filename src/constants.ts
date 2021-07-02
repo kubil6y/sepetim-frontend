@@ -7,4 +7,5 @@ export const paths = {
   login: '/login',
   register: '/register',
   profile: '/profile',
+  restaurantDetailPage: '/restaurants/:slug',
 };

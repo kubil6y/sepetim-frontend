@@ -4,6 +4,7 @@ import {
   NotFound,
   ProfilePage,
   RegisterPage,
+  RestaurantDetails,
   VerificationPage,
 } from './pages';
 import React from 'react';
@@ -17,6 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 const commonRoutes = [
   { id: 0, path: paths.home, component: <HomePage />, exact: true },
+  { id: 1, path: paths.restaurantDetailPage, component: <RestaurantDetails /> },
 ];
 
 const loggedOutRoutes = [

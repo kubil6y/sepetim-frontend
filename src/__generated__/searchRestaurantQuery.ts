@@ -25,7 +25,9 @@ export interface searchRestaurantQuery_searchRestaurant_restaurants {
   __typename: "Restaurant";
   id: number;
   name: string;
-  logoImg: string | null;
+  slug: string;
+  logoImg: string;
+  district: string;
   category: searchRestaurantQuery_searchRestaurant_restaurants_category | null;
   restaurantRating: searchRestaurantQuery_searchRestaurant_restaurants_restaurantRating;
 }

@@ -18,7 +18,9 @@ export const SEARCH_RESTAURANT_QUERY = gql`
       restaurants {
         id
         name
+        slug
         logoImg
+        district
 
         category {
           name

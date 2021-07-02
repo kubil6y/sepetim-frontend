@@ -6,7 +6,7 @@ interface ICircleProps {
 
 export const Circle: FC<ICircleProps> = ({ children }) => {
   return (
-    <div className='flex items-center justify-center p-3 rounded-full cursor-pointer hover:bg-gray-200 cst-transition'>
+    <div className='flex items-center justify-center p-3 rounded-full cursor-pointer hover:bg-gray-100 cst-transition'>
       {children}
     </div>
   );
