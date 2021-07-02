@@ -9,3 +9,13 @@ export const ME_QUERY = gql`
   }
   ${USER_FRAGMENT}
 `;
+
+export const search_restaurant_query = gql`
+  query searchRestaurantQuery($input: SearchRestaurantInput!) {
+    searchRestaurant(input: $input) {
+      ok
+      error
+      restaurants
+    }
+  }
+`;

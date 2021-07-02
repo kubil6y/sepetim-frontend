@@ -6,4 +6,5 @@ export const paths = {
   verifyAccount: '/verify-account',
   login: '/login',
   register: '/register',
+  profile: '/profile',
 };

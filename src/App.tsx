@@ -2,14 +2,15 @@ import {
   HomePage,
   LoginPage,
   NotFound,
+  ProfilePage,
   RegisterPage,
   VerificationPage,
 } from './pages';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Banner, LoggedOutRoute } from './components';
+import { Banner, Header, LoggedOutRoute } from './components';
 import { useMe } from './hooks';
-import { LOCALSTORAGE_TOKEN, paths } from './constants';
+import { paths } from './constants';
 import { isLoggedInVar } from './apollo';
 import { useReactiveVar } from '@apollo/client';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -30,6 +31,11 @@ const protectedRoutes = [
     component: <VerificationPage />,
     exact: true,
   },
+  {
+    id: 201,
+    path: paths.profile,
+    component: <ProfilePage />,
+  },
 ];
 
 export const App = () => {
@@ -40,17 +46,14 @@ export const App = () => {
     isLoggedInVar(false);
   }
 
-  console.log({
-    error: error?.message,
-    isLoggedIn,
-    isVerified: data?.me?.verified,
-  });
-
   return (
     <div className='text-gray-800'>
       {!data?.me?.verified && isLoggedIn && (
         <Banner message='Verify Your Account' to={paths.verifyAccount} />
       )}
+
+      <Header />
+
       <Switch>
         {commonRoutes.map(({ id, path, component, exact }) => (
           <Route

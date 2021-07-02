@@ -8,7 +8,7 @@ interface IBannerProps {
 
 export const Banner: FC<IBannerProps> = ({ message, to }) => {
   return (
-    <div className='h-16 w-full bg-red-500 flex items-center justify-center text-white select-none'>
+    <div className='h-12 w-full bg-gray-800 flex items-center justify-center text-white select-none'>
       <Link
         to={to}
         className='text-xs font-bold tracking-wide transition-colors duration-300 hover:underline'

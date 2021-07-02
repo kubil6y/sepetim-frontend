@@ -1,6 +1,8 @@
+import clsx from 'clsx';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useForm } from 'react-hook-form';
 import { AiFillUnlock } from 'react-icons/ai';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Logo } from '../components';
@@ -12,13 +14,28 @@ import {
   verifyEmailMutationVariables,
 } from '../__generated__/verifyEmailMutation';
 
+interface IForm {
+  code: string;
+}
+
 export const VerificationPage = () => {
-  const history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<IForm>({ mode: 'onChange' });
   const { data: userData } = useMe();
   const client = useApolloClient();
+  const history = useHistory();
+
+  const [isFocused, setIsFocused] = useState(false);
+  //TODO
+  console.log(isFocused);
+  // server side error message states
   const [errorMessage, setErrorMessage] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(true);
-  const [code, setCode] = useState('');
 
   const onCompleted = (data: verifyEmailMutation) => {
     const {
@@ -53,8 +70,8 @@ export const VerificationPage = () => {
     onCompleted,
   });
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const onSubmit = () => {
+    const code = getValues('code');
     if (code === '' || loading) return;
 
     verifyEmail({
@@ -65,7 +82,7 @@ export const VerificationPage = () => {
       },
     });
 
-    setCode('');
+    setValue('code', '');
   };
 
   useEffect(() => {
@@ -109,20 +126,33 @@ export const VerificationPage = () => {
             Please enter the verification code, you have received in your email.
           </h3>
 
-          <form onSubmit={handleSubmit} className='flex items-center'>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex items-center '
+          >
             <input
+              {...register('code', { required: 'This is required' })}
               type='text'
               placeholder='Enter your code'
               className='cst-input'
               style={{ height: 55, borderRight: 0 }}
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
             <button
               type='submit'
-              className='flex items-center justify-center bg-red-500 cursor-pointer hover:bg-red-600 cst-transition'
+              className={clsx(
+                'flex items-center justify-center bg-red-500 cursor-pointer hover:bg-red-600 cst-transition disabled:bg-gray-200 disabled:cursor border border-l-0 ',
+                {
+                  'border-gray-200': !isFocused,
+                },
+                {
+                  'border-gray-500': isFocused,
+                }
+              )}
               style={{ height: 55, width: 55 }}
-              onClick={handleSubmit}
+              onClick={onSubmit}
+              disabled={!isValid}
             >
               <AiFillUnlock className='w-5 h-5 text-white ' />
             </button>

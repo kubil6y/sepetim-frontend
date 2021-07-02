@@ -21,7 +21,7 @@
 }
 
 .cst-container {
-  @apply w-full px-5 mx-auto max-w-screen-xl xl:px-0;
+  @apply w-full px-5 mx-auto max-w-screen-lg xl:px-0;
 }
 
 .cst-form-container {

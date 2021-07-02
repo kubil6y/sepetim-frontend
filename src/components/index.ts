@@ -5,3 +5,5 @@ export * from './Button';
 export * from './Header';
 export * from './Banner';
 export * from './ErrorMessage';
+export * from './Circle';
+export * from './Search';
