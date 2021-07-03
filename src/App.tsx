@@ -2,10 +2,11 @@ import {
   HomePage,
   LoginPage,
   NotFound,
-  ProfilePage,
+  MyProfilePage,
   RegisterPage,
   RestaurantDetails,
   VerificationPage,
+  EditProfilePage,
 } from './pages';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -35,8 +36,13 @@ const protectedRoutes = [
   },
   {
     id: 201,
-    path: paths.profile,
-    component: <ProfilePage />,
+    path: paths.myProfile,
+    component: <MyProfilePage />,
+  },
+  {
+    id: 202,
+    path: paths.editProfile,
+    component: <EditProfilePage />,
   },
 ];
 

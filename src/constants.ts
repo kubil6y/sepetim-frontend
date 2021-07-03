@@ -6,6 +6,7 @@ export const paths = {
   verifyAccount: '/verify-account',
   login: '/login',
   register: '/register',
-  profile: '/profile',
   restaurantDetailPage: '/restaurants/:slug',
+  myProfile: '/my-profile',
+  editProfile: '/edit-profile',
 };

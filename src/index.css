@@ -4,6 +4,10 @@
 @tailwind base;
 @tailwind components;
 
+.cst-profile-title {
+  @apply text-lg font-bold;
+}
+
 .cst-input-group {
   @apply space-y-2 w-full;
 }

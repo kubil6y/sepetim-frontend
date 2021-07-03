@@ -51,9 +51,8 @@ export const Search: FC = () => {
       });
     };
     main();
-  }, [query, callQuery]);
+  }, [query, callQuery, loading]);
 
-  //console.log(location);
   useEffect(() => {
     setShowSearchItems(false);
     setTerm('');
@@ -75,7 +74,6 @@ export const Search: FC = () => {
             autoComplete='off'
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            onMouseEnter={() => setShowBackdrop(true)}
             onFocus={() => {
               setShowSearchItems(true);
               setShowBackdrop(true);
@@ -107,6 +105,7 @@ export const Search: FC = () => {
                     district={district}
                     logoImg={logoImg}
                     categoryName={category!.name}
+                    categorySlug={category!.slug}
                     tasteRating={restaurantRating.taste!}
                     setShowBackdrop={setShowBackdrop}
                   />

@@ -9,6 +9,7 @@ interface ISearchItemProps {
   district: string;
   logoImg: string;
   categoryName: string;
+  categorySlug: string;
   tasteRating: number;
   setShowBackdrop: any;
 }
@@ -19,6 +20,7 @@ export const SearchItem: FC<ISearchItemProps> = ({
   slug,
   logoImg,
   categoryName,
+  categorySlug,
   tasteRating,
   setShowBackdrop,
 }) => {
@@ -32,7 +34,11 @@ export const SearchItem: FC<ISearchItemProps> = ({
         onMouseLeave={() => setShowBackdrop(false)}
       >
         <div className='w-1/5'>
-          <img src={logoImg} className='block h-12 max-w-full ' />
+          <img
+            src={logoImg}
+            className='block h-12 max-w-full '
+            alt='restaurant logo'
+          />
         </div>
         <div className='flex flex-col justify-center w-4/5 mx-2 space-x-2'>
           <div className='flex items-center space-x-3'>
@@ -40,7 +46,9 @@ export const SearchItem: FC<ISearchItemProps> = ({
             <p className='text-xs text-gray-500 capitalize md:text-sm'>
               ({district})
             </p>
-            {!smallScreen && <Badge categoryName={categoryName} />}
+            {!smallScreen && (
+              <Badge categorySlug={categorySlug} categoryName={categoryName} />
+            )}
           </div>
         </div>
         <div className='ml-auto'>

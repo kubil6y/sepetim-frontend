@@ -24,6 +24,7 @@ export const SEARCH_RESTAURANT_QUERY = gql`
 
         category {
           name
+          slug
         }
 
         restaurantRating {

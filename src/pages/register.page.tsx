@@ -125,6 +125,7 @@ export const RegisterPage = () => {
               <p className='cst-error-message'>{errors.lastName.message}</p>
             )}
           </div>
+
           {/* USERNAME */}
           <div className='cst-input-group'>
             <div className='cst-title'>Username*</div>
@@ -168,6 +169,10 @@ export const RegisterPage = () => {
               <input
                 {...register('password', {
                   required: 'Please enter your password',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
                 })}
                 type={type}
                 className='-mr-16 cst-input'

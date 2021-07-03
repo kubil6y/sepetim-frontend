@@ -101,6 +101,7 @@ export const LoginPage = () => {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
+          {/* CREDENTIALS (email || username) */}
           <div className='cst-input-group'>
             <div className='cst-title'>Credentials</div>
             <input
@@ -115,12 +116,18 @@ export const LoginPage = () => {
               <p className='cst-error-message'>{errors.credentials.message}</p>
             )}
           </div>
+
+          {/* PASSWORD */}
           <div className='cst-input-group'>
             <div className='cst-title'>Password</div>
             <div className='flex items-center justify-between'>
               <input
                 {...register('password', {
                   required: 'Please enter your password',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
                 })}
                 type={type}
                 className='-mr-16 cst-input'

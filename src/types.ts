@@ -1,5 +1,5 @@
 export type CategoryType =
-  | 'fast food'
+  | 'fast-food'
   | 'healthy'
   | 'pizza'
   | 'kebab'

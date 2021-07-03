@@ -27,3 +27,12 @@ export const VERIFY_EMAIL_MUTATION = gql`
     }
   }
 `;
+
+export const EDIT_USER_PROFILE_MUTATION = gql`
+  mutation editUserProfileMutation($input: EditUserProfileInput!) {
+    editUserProfile(input: $input) {
+      ok
+      error
+    }
+  }
+`;

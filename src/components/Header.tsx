@@ -21,7 +21,7 @@ export const Header: FC = () => {
 
         {!smallScreen && <Search />}
 
-        <Link to={paths.profile} className='ml-2 md:ml-10'>
+        <Link to={paths.myProfile} className='ml-2 md:ml-10'>
           <Circle>
             <FaUserAlt />
           </Circle>

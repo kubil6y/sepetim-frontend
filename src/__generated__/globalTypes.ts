@@ -21,6 +21,14 @@ export interface CreateUserInput {
   password: string;
 }
 
+export interface EditUserProfileInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  address?: string | null;
+  email?: string | null;
+  password?: string | null;
+}
+
 export interface LoginInput {
   credentials: string;
   password: string;
