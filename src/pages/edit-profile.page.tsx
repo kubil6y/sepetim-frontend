@@ -1,9 +1,9 @@
 import { gql, useApolloClient, useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button } from '../components';
 import { paths } from '../constants';
 import { EDIT_USER_PROFILE_MUTATION } from '../graphql';
@@ -28,8 +28,6 @@ export const EditProfilePage = () => {
 
   // show password state
   const [type, setType] = useState<'password' | 'text'>('password');
-  // did email change state TODO
-  const [emailChanged, setEmailChanged] = useState(false);
 
   const {
     register,

@@ -1,13 +1,35 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Logo } from './Logo';
 import { FaUserAlt } from 'react-icons/fa';
 import { Circle, Search } from '../components';
-import { Link } from 'react-router-dom';
-import { paths } from '../constants';
+import { Link, useHistory } from 'react-router-dom';
+import { LOCALSTORAGE_TOKEN, paths } from '../constants';
 import { useMediaQuery } from '@react-hook/media-query';
+import { DropdownItem } from './DropdownItem';
+import { AnimatePresence, motion } from 'framer-motion';
+import { dropdownAnim } from '../animations';
+import { isLoggedInVar } from '../apollo';
+import { useReactiveVar } from '@apollo/client';
+import { AiOutlineLogin } from 'react-icons/ai';
+
+const dropdownLinks = [
+  { id: 0, to: paths.myProfile, inner: 'My Profile' },
+  { id: 1, to: paths.editProfile, inner: 'Edit Profile' },
+];
+
+const dropdownItems = [{ id: 100, inner: 'Logout' }];
 
 export const Header: FC = () => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
+  const history = useHistory();
+  const [dropdownShow, setDropdownShow] = useState(false);
   const smallScreen = useMediaQuery('only screen and (max-width: 400px)');
+
+  const handleLogout = () => {
+    localStorage.removeItem(LOCALSTORAGE_TOKEN);
+    isLoggedInVar(false);
+    history.push(paths.home);
+  };
 
   return (
     <div className='cst-container'>
@@ -21,11 +43,48 @@ export const Header: FC = () => {
 
         {!smallScreen && <Search />}
 
-        <Link to={paths.myProfile} className='ml-2 md:ml-10'>
-          <Circle>
-            <FaUserAlt />
-          </Circle>
-        </Link>
+        {isLoggedIn ? (
+          <div
+            className='ml-2 md:ml-10 relative z-10'
+            onClick={() => setDropdownShow((st) => !st)}
+          >
+            <Circle>
+              <FaUserAlt />
+            </Circle>
+
+            <AnimatePresence>
+              {dropdownShow && (
+                <motion.div
+                  variants={dropdownAnim}
+                  initial='hidden'
+                  animate='show'
+                  exit='hidden'
+                  className='absolute mt-2 bg-white border border-gray-200 shadow space-y-1'
+                  style={{ height: '-100%', right: 0, minWidth: '120px' }}
+                >
+                  {isLoggedIn &&
+                    dropdownLinks.map(({ id, to, inner }) => (
+                      <Link to={to} key={id}>
+                        <DropdownItem inner={inner} />
+                      </Link>
+                    ))}
+
+                  {dropdownItems.map(({ id, inner }) => (
+                    <div onClick={handleLogout} key={id}>
+                      <DropdownItem key={id} inner={inner} />
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ) : (
+          <Link className='ml-2 md:ml-10' to={paths.login}>
+            <Circle>
+              <AiOutlineLogin />
+            </Circle>
+          </Link>
+        )}
       </div>
 
       {smallScreen && <Search />}
