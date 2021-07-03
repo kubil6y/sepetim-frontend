@@ -36,3 +36,17 @@ export const SEARCH_RESTAURANT_QUERY = gql`
     }
   }
 `;
+
+export const GET_ALL_CATEGORIES_QUERY = gql`
+  query getAllCategoriesQuery {
+    getAllCategories {
+      ok
+      error
+      categories {
+        name
+        logoImg
+        slug
+      }
+    }
+  }
+`;

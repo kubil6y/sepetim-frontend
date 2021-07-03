@@ -7,6 +7,7 @@ import {
   RestaurantDetails,
   VerificationPage,
   EditProfilePage,
+  CategoryPage,
 } from './pages';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -20,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 const commonRoutes = [
   { id: 0, path: paths.home, component: <HomePage />, exact: true },
   { id: 1, path: paths.restaurantDetailPage, component: <RestaurantDetails /> },
+  { id: 2, path: paths.categoryPage, component: <CategoryPage /> },
 ];
 
 const loggedOutRoutes = [

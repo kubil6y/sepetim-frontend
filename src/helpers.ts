@@ -19,3 +19,17 @@ export const getColorByCategory = (
 ): { bg: string; fg: string } => {
   return categoryColors[categorySlug];
 };
+
+export const capitalize = (term: string) => {
+  const str = term.trim();
+  if (str.split(' ').length === 0) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+  } else {
+    const parts = str.split(' ');
+    let result = '';
+    for (const part of parts) {
+      result += part[0].toUpperCase() + part.slice(1).toLowerCase() + ' ';
+    }
+    return result;
+  }
+};

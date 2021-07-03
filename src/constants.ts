@@ -9,4 +9,5 @@ export const paths = {
   restaurantDetailPage: '/restaurants/:slug',
   myProfile: '/my-profile',
   editProfile: '/edit-profile',
+  categoryPage: '/category/:slug',
 };

@@ -12,3 +12,5 @@ export * from './Backdrop';
 export * from './RatingBox';
 export * from './Badge';
 export * from './DropdownItem';
+export * from './Categories';
+export * from './CategoryItem';

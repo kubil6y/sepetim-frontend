@@ -6,3 +6,4 @@ export * from './verification.page';
 export * from './restaurant-details.page';
 export * from './my-profile.page';
 export * from './edit-profile.page';
+export * from './category.page';
