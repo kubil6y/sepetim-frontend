@@ -4,6 +4,6 @@ export const backdropAnim = {
 };
 
 export const dropdownAnim = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, transition: { duration: 0.25 } },
   show: { opacity: 1, transition: { duration: 0.25 } },
 };

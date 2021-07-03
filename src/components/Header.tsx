@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Logo } from './Logo';
 import { FaUserAlt } from 'react-icons/fa';
 import { Circle, Search } from '../components';
@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { dropdownAnim } from '../animations';
 import { isLoggedInVar } from '../apollo';
 import { useReactiveVar } from '@apollo/client';
+import { useClickOutside } from '../hooks';
 import { AiOutlineLogin } from 'react-icons/ai';
 
 const dropdownLinks = [
@@ -22,8 +23,15 @@ const dropdownItems = [{ id: 100, inner: 'Logout' }];
 export const Header: FC = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const history = useHistory();
-  const [dropdownShow, setDropdownShow] = useState(false);
   const smallScreen = useMediaQuery('only screen and (max-width: 400px)');
+
+  // dropdown misc
+  const dropdownRef = useRef(null);
+  const boxRef = useRef(null);
+
+  const [dropdownShow, setDropdownShow] = useState(false);
+  const handleClickOutside = () => setDropdownShow(false);
+  useClickOutside(dropdownRef, boxRef, handleClickOutside);
 
   const handleLogout = () => {
     localStorage.removeItem(LOCALSTORAGE_TOKEN);
@@ -45,7 +53,8 @@ export const Header: FC = () => {
 
         {isLoggedIn ? (
           <div
-            className='ml-2 md:ml-10 relative z-10'
+            ref={dropdownRef}
+            className='relative z-10 ml-2 md:ml-10'
             onClick={() => setDropdownShow((st) => !st)}
           >
             <Circle>
@@ -55,6 +64,7 @@ export const Header: FC = () => {
             <AnimatePresence>
               {dropdownShow && (
                 <motion.div
+                  ref={boxRef}
                   variants={dropdownAnim}
                   initial='hidden'
                   animate='show'
