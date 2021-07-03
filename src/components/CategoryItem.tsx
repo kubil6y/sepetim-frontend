@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import ReactTooltip from 'react-tooltip';
 import { Link } from 'react-router-dom';
-import { Circle } from '../components';
-import { capitalize } from '../helpers';
 
 interface ICategoryItemProps {
   src: string;
@@ -19,17 +16,12 @@ export const CategoryItem: FC<ICategoryItemProps> = ({
 }) => {
   return (
     <>
-      <Link to={to} data-tip={capitalize(name)}>
-        <Circle>
-          <img src={src} alt={alt} className='block max-w-full w-10 h-10' />
-        </Circle>
+      <Link to={to} className='flex flex-col space-y-1 items-center group'>
+        <div className='flex items-center justify-center p-3 rounded-full cursor-pointer group-hover:bg-gray-100 cst-transition'>
+          <img src={src} alt={alt} className='block w-10 h-10 max-w-full' />
+        </div>
+        <p className='text-sm capitalize'>{name}</p>
       </Link>
-      <ReactTooltip
-        backgroundColor='#F87171'
-        effect='solid'
-        place='bottom'
-        delayShow={150}
-      />
     </>
   );
 };

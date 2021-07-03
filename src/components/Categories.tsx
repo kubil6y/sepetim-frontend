@@ -9,11 +9,16 @@ export const Categories: FC = () => {
     GET_ALL_CATEGORIES_QUERY
   );
 
-  //if (loading) return <h3>Loading...</h3>;
-  //if (error) return <h3>Something went wrong...</h3>;
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Something went wrong...</h1>;
+  }
 
   return (
-    <div className='flex items-center justify-center w-full py-3 space-x-5'>
+    <div className='flex items-center justify-center w-full py-3 space-x-6'>
       {data?.getAllCategories?.categories &&
         data.getAllCategories.categories.map(({ slug, name, logoImg }) => (
           <CategoryItem

@@ -74,11 +74,11 @@ export const MyProfilePage = () => {
             <h2 className='cst-profile-title'>Address</h2>
             <h3 className='text-gray-700 text-md'>{address}</h3>
           </div>
-
-          <Link to={paths.editProfile} className='w-full'>
-            <Button inner='edit profile' />
-          </Link>
         </div>
+
+        <Link to={paths.editProfile} className='w-full mt-4'>
+          <Button inner='edit profile' />
+        </Link>
       </div>
     </>
   );
