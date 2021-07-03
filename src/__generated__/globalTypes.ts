@@ -34,6 +34,10 @@ export interface LoginInput {
   password: string;
 }
 
+export interface RestaurantsByCategoryInput {
+  slug: string;
+}
+
 export interface SearchRestaurantInput {
   query: string;
 }

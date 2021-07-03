@@ -18,7 +18,7 @@ export const Categories: FC = () => {
   }
 
   return (
-    <div className='flex items-center justify-center w-full py-3 space-x-6'>
+    <div className='w-full py-4 md:flex md:items-center md:justify-center grid grid-cols-3 md:space-x-8'>
       {data?.getAllCategories?.categories &&
         data.getAllCategories.categories.map(({ slug, name, logoImg }) => (
           <CategoryItem

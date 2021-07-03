@@ -1,6 +1,4 @@
 import { CategoryType } from './types';
-// TODO
-// it would be better to put them into database.
 
 // light #F9FAFB
 // dark #1F2937

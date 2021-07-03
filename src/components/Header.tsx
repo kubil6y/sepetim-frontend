@@ -40,7 +40,7 @@ export const Header: FC = () => {
   };
 
   return (
-    <div className='cst-container'>
+    <div className='mb-3 cst-container'>
       <div className='flex items-center justify-between px-3 pt-4 pb-2 md:px-10'>
         <Link to={paths.home} className='mr-2 md:mr-10'>
           <div className='flex items-center space-x-3'>
@@ -101,3 +101,5 @@ export const Header: FC = () => {
     </div>
   );
 };
+
+// TODO order bucket length etc. will be added next to user when logged in

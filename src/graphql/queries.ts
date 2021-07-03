@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { USER_FRAGMENT } from './fragments';
+import { META_FRAGMENT, RESTAURANT_FRAGMENT, USER_FRAGMENT } from './fragments';
 
 export const ME_QUERY = gql`
   query meQuery {
@@ -49,4 +49,21 @@ export const GET_ALL_CATEGORIES_QUERY = gql`
       }
     }
   }
+`;
+
+export const RESTAURANTS_BY_CATEGORY_QUERY = gql`
+  query restaurantsByCategoryQuery($input: RestaurantsByCategoryInput!) {
+    restaurantsByCategory(input: $input) {
+      ok
+      error
+      meta {
+        ...MetaParts
+      }
+      results {
+        ...RestaurantParts
+      }
+    }
+  }
+  ${META_FRAGMENT}
+  ${RESTAURANT_FRAGMENT}
 `;

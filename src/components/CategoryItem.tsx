@@ -17,7 +17,7 @@ export const CategoryItem: FC<ICategoryItemProps> = ({
   return (
     <>
       <Link to={to} className='flex flex-col space-y-1 items-center group'>
-        <div className='flex items-center justify-center p-3 rounded-full cursor-pointer group-hover:bg-gray-100 cst-transition'>
+        <div className='flex items-center justify-center p-2 rounded-full cursor-pointer md:p-3 group-hover:bg-gray-100 cst-transition'>
           <img src={src} alt={alt} className='block w-10 h-10 max-w-full' />
         </div>
         <p className='text-sm capitalize'>{name}</p>
