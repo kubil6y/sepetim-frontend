@@ -3,8 +3,8 @@ import { useLazyQuery } from '@apollo/client';
 import { useParams } from 'react-router';
 import {
   BigBadge,
-  Button,
   ErrorQuery,
+  GenericError,
   Loader,
   RestaurantCard,
 } from '../components';
@@ -14,8 +14,6 @@ import {
   restaurantsByCategoryQuery,
   restaurantsByCategoryQueryVariables,
 } from '../__generated__/restaurantsByCategoryQuery';
-import { Link } from 'react-router-dom';
-import { paths } from '../constants';
 
 interface IParams {
   slug: CategoryType;
@@ -44,18 +42,11 @@ export const CategoryPage: FC = () => {
 
   return (
     <div className='cst-container'>
-      <BigBadge categorySlug={slug} />
-      <div>{slug}</div>
+      {data?.restaurantsByCategory?.results && <BigBadge categorySlug={slug} />}
+
       {data?.restaurantsByCategory?.results &&
       data?.restaurantsByCategory?.results.length === 0 ? (
-        <div className='py-20 flex items-center cst-container w-full justify-center space-y-3 flex-col'>
-          <h2 className='text-2xl font-bold '>
-            No restaurants are registered for this category.
-          </h2>
-          <Link to={paths.home}>
-            <Button inner='Home' />
-          </Link>
-        </div>
+        <GenericError message='No restaurants are registered for this category' />
       ) : (
         <div className='w-full my-3 space-y-6'>
           {data?.restaurantsByCategory?.results &&
@@ -64,10 +55,10 @@ export const CategoryPage: FC = () => {
             ))}
         </div>
       )}
+
+      {!data?.restaurantsByCategory?.results && (
+        <GenericError message='Category does not exist' />
+      )}
     </div>
   );
 };
-
-/*
-
- */

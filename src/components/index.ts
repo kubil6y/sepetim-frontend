@@ -19,3 +19,4 @@ export * from './SlideShow';
 export * from './RestaurantCard';
 export * from './Loader';
 export * from './ErrorQuery';
+export * from './GenericError';

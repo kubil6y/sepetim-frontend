@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { getColorByCategory } from '../helpers';
+import { getColorByCategory, unslugify } from '../helpers';
 import { CategoryType } from '../types';
 
 interface IBigBadgeProps {
@@ -16,12 +16,15 @@ export const BigBadge: FC<IBigBadgeProps> = ({ categorySlug }) => {
         <title>Sepetim | {categorySlug}</title>
       </Helmet>
       <div className='cst-container'>
-        <h1
-          className='text-2xl border-b-2 inline-block p-1'
-          style={{ borderColor: 'black' }}
+        <h3
+          className='inline-block p-1 capitalize px-2 py-1'
+          style={{
+            backgroundColor: categoryColors?.bg,
+            color: categoryColors?.fg,
+          }}
         >
-          Merhaba
-        </h1>
+          {unslugify(categorySlug)}
+        </h3>
       </div>
     </>
   );

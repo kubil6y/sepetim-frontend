@@ -21,3 +21,15 @@ export const getColorByCategory = (
 export const capitalize = (str: string) => {
   return str[0].toUpperCase() + str.slice(1).toLowerCase();
 };
+
+export const unslugify = (str: string) => {
+  let result = '';
+  for (const ch of str) {
+    if (ch === '-') {
+      result += ' ';
+    } else {
+      result += ch;
+    }
+  }
+  return result;
+};

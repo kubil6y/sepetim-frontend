@@ -46,7 +46,7 @@ export const EditProfilePage = () => {
 
   const onCompleted = (data: editUserProfileMutation) => {
     const {
-      editUserProfile: { ok, error },
+      editUserProfile: { ok },
     } = data;
 
     if (ok && userData?.me?.id) {
