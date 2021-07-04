@@ -35,6 +35,7 @@ export interface LoginInput {
 }
 
 export interface RestaurantsByCategoryInput {
+  page?: number | null;
   slug: string;
 }
 

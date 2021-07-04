@@ -1,6 +1,7 @@
 import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
+//import { Carousel } from 'react-responsive-carousel';
 
+/*
 export const SlideShow = () => {
   // TODO get top 5 restaurants and make a slide show with them.
 
@@ -42,4 +43,9 @@ export const SlideShow = () => {
       <div>slide show here</div>
     </div>
   );
+};
+*/
+
+export const SlideShow = () => {
+  return null;
 };

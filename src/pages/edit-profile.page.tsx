@@ -49,8 +49,6 @@ export const EditProfilePage = () => {
       editUserProfile: { ok, error },
     } = data;
 
-    console.log(error);
-
     if (ok && userData?.me?.id) {
       const { firstName, lastName, address, email } = getValues();
       client.writeFragment({

@@ -17,3 +17,5 @@ export * from './Categories';
 export * from './CategoryItem';
 export * from './SlideShow';
 export * from './RestaurantCard';
+export * from './Loader';
+export * from './ErrorQuery';
