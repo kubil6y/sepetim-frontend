@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { useParams } from 'react-router';
 import {
@@ -6,6 +6,7 @@ import {
   ErrorQuery,
   GenericError,
   Loader,
+  Pagination,
   RestaurantCard,
 } from '../components';
 import { RESTAURANTS_BY_CATEGORY_QUERY } from '../graphql';
@@ -20,6 +21,7 @@ interface IParams {
 }
 
 export const CategoryPage: FC = () => {
+  const [page, setPage] = useState(1);
   const { slug } = useParams<IParams>();
   const [callQuery, { data, loading, error }] = useLazyQuery<
     restaurantsByCategoryQuery,
@@ -31,11 +33,11 @@ export const CategoryPage: FC = () => {
       variables: {
         input: {
           slug,
-          //page: 2, TODO
+          page,
         },
       },
     });
-  }, [slug, callQuery]);
+  }, [slug, callQuery, page]);
 
   if (loading) return <Loader />;
   if (error) return <ErrorQuery />;
@@ -53,6 +55,14 @@ export const CategoryPage: FC = () => {
             data?.restaurantsByCategory?.results.map((restaurant) => (
               <RestaurantCard key={restaurant.id} restaurant={restaurant} />
             ))}
+
+          {data?.restaurantsByCategory?.meta?.totalPages && (
+            <Pagination
+              currentPage={page}
+              totalPages={data.restaurantsByCategory.meta.totalPages}
+              setPage={setPage}
+            />
+          )}
         </div>
       )}
 

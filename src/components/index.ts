@@ -20,3 +20,4 @@ export * from './RestaurantCard';
 export * from './Loader';
 export * from './ErrorQuery';
 export * from './GenericError';
+export * from './Pagination';
