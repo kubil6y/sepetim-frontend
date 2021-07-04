@@ -36,7 +36,7 @@ export const SearchItem: FC<ISearchItemProps> = ({
         <div className='w-1/5'>
           <img
             src={logoImg}
-            className='block h-12 max-w-full '
+            className='block w-8 h-8 md:w-12 md:h-12'
             alt='restaurant logo'
           />
         </div>

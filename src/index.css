@@ -21,7 +21,7 @@
 }
 
 .cst-btn {
-  @apply w-full px-5 py-3 mt-3 text-lg font-medium text-white capitalize bg-red-500 border hover:bg-red-600 transition-colors disabled:bg-gray-200 focus:outline-none focus:border-gray-500 duration-300;
+  @apply w-full px-3 py-2 mt-3 text-sm font-medium text-white capitalize bg-red-500 border hover:bg-red-600 transition-colors disabled:bg-gray-200 focus:outline-none focus:border-gray-500 duration-300;
 }
 
 .cst-container {

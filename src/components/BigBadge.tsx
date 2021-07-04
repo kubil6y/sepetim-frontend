@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getColorByCategory, unslugify } from '../helpers';
 import { CategoryType } from '../types';

@@ -19,7 +19,7 @@ export const RestaurantCard: FC<IRestaurantCardProps> = ({ restaurant }) => {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         whileTap={{ scale: 0.96 }}
-        className='relative flex items-center justify-between w-full py-10 pr-2 text-3xl text-white'
+        className='relative flex items-center justify-between w-full py-10 pr-2 text-3xl text-white flex-col sm:flex-row space-y-4 sm:space-y-0'
       >
         {/* NAMES */}
         <div className='flex items-center inline-block px-2 text-white bg-gray-700 space-x-2'>
@@ -30,7 +30,7 @@ export const RestaurantCard: FC<IRestaurantCardProps> = ({ restaurant }) => {
         </div>
 
         {/* LOGO */}
-        <div className='flex items-center justify-center w-20 h-20 rounded-full bg-gray-50 shadow-inner'>
+        <div className='flex items-center justify-center w-20 h-20 rounded-full shadow-inner bg-gray-50'>
           <img
             className='block h-12 max-w-full '
             src={restaurant.logoImg}

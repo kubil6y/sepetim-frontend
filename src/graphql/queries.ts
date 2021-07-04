@@ -67,3 +67,27 @@ export const RESTAURANTS_BY_CATEGORY_QUERY = gql`
   ${META_FRAGMENT}
   ${RESTAURANT_FRAGMENT}
 `;
+
+export const GET_RESTAURANT_QUERY = gql`
+  query getRestaurantQuery($input: GetRestaurantInput!) {
+    getRestaurant(input: $input) {
+      ok
+      error
+      restaurant {
+        ...RestaurantParts
+        menu {
+          id
+          name
+          description
+          basePrice
+          dishType
+          options {
+            name
+            extra
+          }
+        }
+      }
+    }
+  }
+  ${RESTAURANT_FRAGMENT}
+`;

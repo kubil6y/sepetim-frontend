@@ -47,5 +47,5 @@ export const SlideShow = () => {
 */
 
 export const SlideShow = () => {
-  return null;
+  return <h1>merhaba</h1>;
 };
