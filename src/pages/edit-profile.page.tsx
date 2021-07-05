@@ -120,9 +120,9 @@ export const EditProfilePage = () => {
       <Helmet>
         <title>Sepetim | Edit Profile</title>
       </Helmet>
-      <div className='p-2  cst-container'>
+      <div className='p-2 mt-6 cst-container'>
         <div className='p-5 border border-gray-500 space-y-4'>
-          <h1 className='cst-title underline'>Edit Profile</h1>
+          <h1 className='underline cst-title'>Edit Profile</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
             {/* FIRST NAME */}

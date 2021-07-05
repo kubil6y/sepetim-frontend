@@ -1,5 +1,6 @@
 import './styles.css';
 import './index.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { render } from 'react-dom';
 import { App } from './App';
 import { ApolloProvider } from '@apollo/client';

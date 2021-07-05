@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router';
 import {
@@ -14,6 +15,7 @@ import {
   getRestaurantQueryVariables,
 } from '../__generated__/getRestaurantQuery';
 import { Helmet } from 'react-helmet-async';
+import { pageAnimation, slider, sliderContainer } from '../animations';
 
 interface IParams {
   slug: string;
@@ -34,6 +36,7 @@ export const RestaurantDetails = () => {
     return <GenericError message='Restaurant does not exist' />;
   }
 
+  console.log(data);
   return (
     <>
       <Helmet>
@@ -42,7 +45,20 @@ export const RestaurantDetails = () => {
           {data?.getRestaurant?.restaurant?.name || 'Restaurant Details'}
         </title>
       </Helmet>
-      <div className='cst-container'>
+      <motion.div
+        className='cst-container mt-6'
+        variants={pageAnimation}
+        initial='hidden'
+        animate='show'
+        exit='exit'
+      >
+        <motion.div variants={sliderContainer}>
+          <motion.div variants={slider} className='frame1'></motion.div>
+          <motion.div variants={slider} className='frame2'></motion.div>
+          <motion.div variants={slider} className='frame3'></motion.div>
+          <motion.div variants={slider} className='frame4'></motion.div>
+        </motion.div>
+
         <div
           className='relative py-32 shadow'
           style={{
@@ -105,7 +121,7 @@ export const RestaurantDetails = () => {
             </>
           )}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

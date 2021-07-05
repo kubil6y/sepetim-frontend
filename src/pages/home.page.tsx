@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Categories, SlideShow } from '../components';
+import { Categories, PastOrders, SlideShow } from '../components';
 
 export const HomePage = () => {
   return (
@@ -8,10 +8,10 @@ export const HomePage = () => {
       <Helmet>
         <title>Sepetim | Online Food Service</title>
       </Helmet>
-      <div className='mt-3 cst-container'>
-        <SlideShow />
+      <div className='mt-3 cst-container space-y-4 mb-24'>
         <Categories />
-        <div>orders here</div>
+        <SlideShow />
+        <PastOrders />
       </div>
     </>
   );

@@ -1,51 +1,60 @@
 import React from 'react';
-//import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { Carousel } from 'react-responsive-carousel';
+import { ErrorQuery, Loader } from '../components';
+import { GET_FIVE_RESTAURANTS } from '../graphql';
+import { getFiveRestaurantsQuery } from '../__generated__/getFiveRestaurantsQuery';
 
-/*
 export const SlideShow = () => {
-  // TODO get top 5 restaurants and make a slide show with them.
+  const { data, loading, error } = useQuery<getFiveRestaurantsQuery>(
+    GET_FIVE_RESTAURANTS
+  );
 
-  const random = false;
-  return random ? (
-    <Carousel
-      showArrows={true}
-      //onChange={onChange}
-      //onClickIte={onClickItem}
-      //onClickThumb={onClickThumb}
-    >
-      <div>
-        <img src='assets/1.jpeg' />
-        <p className='legend'>Legend 1</p>
-      </div>
-      <div>
-        <img src='assets/2.jpeg' />
-        <p className='legend'>Legend 2</p>
-      </div>
-      <div>
-        <img src='assets/3.jpeg' />
-        <p className='legend'>Legend 3</p>
-      </div>
-      <div>
-        <img src='assets/4.jpeg' />
-        <p className='legend'>Legend 4</p>
-      </div>
-      <div>
-        <img src='assets/5.jpeg' />
-        <p className='legend'>Legend 5</p>
-      </div>
-      <div>
-        <img src='assets/6.jpeg' />
-        <p className='legend'>Legend 6</p>
-      </div>
-    </Carousel>
-  ) : (
-    <div>
-      <div>slide show here</div>
+  if (loading) return <Loader />;
+  if (error || !data?.getFiveRestaurants?.restaurants) return <ErrorQuery />;
+
+  console.log(data);
+
+  return (
+    <div className='flex items-center justify-center'>
+      <Carousel autoPlay showThumbs={false} infiniteLoop>
+        {data?.getFiveRestaurants?.restaurants &&
+          data?.getFiveRestaurants?.restaurants.map((restaurant) => (
+            <div key={restaurant?.id}>
+              <img src={restaurant?.coverImg} />
+              <Link to={`/restaurants/${restaurant?.slug}`}>
+                <p className='cursor-pointer legend'>{restaurant?.name}</p>
+              </Link>
+            </div>
+          ))}
+      </Carousel>
     </div>
   );
 };
-*/
 
-export const SlideShow = () => {
-  return <h1>slide show here</h1>;
-};
+//<div>
+//<img src='assets/1.jpeg' />
+//<p className='legend'>Legend 1</p>
+//</div>
+
+/*
+
+            <Link
+              to={`/restaurants/${restaurant?.slug}`}
+              key={restaurant?.slug}
+            >
+
+      <Carousel showArrows={true} autoPlay>
+        {data?.getFiveRestaurants?.restaurants &&
+          data?.getFiveRestaurants?.restaurants.length > 0 &&
+          data?.getFiveRestaurants?.restaurants.map((restaurant) => (
+            <Link to={`/restaurants/${restaurant?.slug}`}>
+              <div>
+                <img src={restaurant?.coverImg}/>
+                <p className='legend'>Legend 1</p>
+              </div>
+            </Link>
+          ))}
+      </Carousel>
+   */

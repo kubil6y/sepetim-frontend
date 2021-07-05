@@ -77,7 +77,6 @@ export const DishCard: FC<IDishProps> = ({
   const totalCalories = (calorie + option.calorie) * quantity;
 
   const handleOrder = () => {
-    if (loading) return;
     createOrder({
       variables: {
         input: {

@@ -24,3 +24,4 @@ export * from './Pagination';
 export * from './PreviousButton';
 export * from './DishCard';
 export * from './OrderButton';
+export * from './PastOrders';

@@ -10,13 +10,14 @@ import {
   CategoryPage,
 } from './pages';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { Banner, Header, LoggedOutRoute } from './components';
 import { useMe } from './hooks';
 import { paths } from './constants';
 import { isLoggedInVar } from './apollo';
 import { useReactiveVar } from '@apollo/client';
 import ProtectedRoute from './components/ProtectedRoute';
+import { AnimatePresence } from 'framer-motion';
 
 const commonRoutes = [
   { id: 0, path: paths.home, component: <HomePage />, exact: true },
@@ -49,6 +50,7 @@ const protectedRoutes = [
 ];
 
 export const App = () => {
+  const location = useLocation();
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const { data, error } = useMe();
 
@@ -64,38 +66,40 @@ export const App = () => {
 
       <Header />
 
-      <Switch>
-        {commonRoutes.map(({ id, path, component, exact }) => (
-          <Route
-            key={id}
-            path={path}
-            component={() => component}
-            exact={Boolean(exact)}
-          />
-        ))}
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          {commonRoutes.map(({ id, path, component, exact }) => (
+            <Route
+              key={id}
+              path={path}
+              component={() => component}
+              exact={Boolean(exact)}
+            />
+          ))}
 
-        {loggedOutRoutes.map(({ id, path, component, exact }) => (
-          <LoggedOutRoute
-            authenticationPath={paths.home}
-            key={id}
-            path={path}
-            component={() => component}
-            exact={Boolean(exact)}
-          />
-        ))}
+          {loggedOutRoutes.map(({ id, path, component, exact }) => (
+            <LoggedOutRoute
+              authenticationPath={paths.home}
+              key={id}
+              path={path}
+              component={() => component}
+              exact={Boolean(exact)}
+            />
+          ))}
 
-        {protectedRoutes.map(({ id, path, component, exact }) => (
-          <ProtectedRoute
-            isAuthenticated={isLoggedIn}
-            authenticationPath={paths.login}
-            key={id}
-            path={path}
-            component={() => component}
-            exact={Boolean(exact)}
-          />
-        ))}
-        <Route path='*' component={() => <NotFound />} />
-      </Switch>
+          {protectedRoutes.map(({ id, path, component, exact }) => (
+            <ProtectedRoute
+              isAuthenticated={isLoggedIn}
+              authenticationPath={paths.login}
+              key={id}
+              path={path}
+              component={() => component}
+              exact={Boolean(exact)}
+            />
+          ))}
+          <Route path='*' component={() => <NotFound />} />
+        </Switch>
+      </AnimatePresence>
     </div>
   );
 };

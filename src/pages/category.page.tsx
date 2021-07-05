@@ -43,7 +43,7 @@ export const CategoryPage: FC = () => {
   if (error) return <ErrorQuery />;
 
   return (
-    <div className='cst-container'>
+    <div className='cst-container pb-24 mt-6'>
       {data?.restaurantsByCategory?.results && <BigBadge categorySlug={slug} />}
 
       {data?.restaurantsByCategory?.results &&

@@ -1,3 +1,38 @@
+/* page animations */
+.frame1 {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background: #fffebf;
+}
+
+.frame2 {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background: #ff8efb;
+}
+.frame3 {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background: #8ed2ff;
+}
+.frame4 {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background: #8effa0;
+}
+
 .loader {
   font-size: 10px;
   margin: 50px auto;

@@ -14,7 +14,7 @@ export const Pagination: FC<IPaginationProps> = ({
   setPage,
 }) => {
   return (
-    <div className='mx-auto flex items-center justify-center space-x-6 pb-24'>
+    <div className='mx-auto flex items-center justify-center space-x-6'>
       {currentPage > 1 ? (
         <Circle onClick={() => setPage((prev: number) => prev - 1)}>
           <AiOutlineArrowLeft className='cursor-pointer' />

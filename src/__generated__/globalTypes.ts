@@ -40,6 +40,10 @@ export interface EditUserProfileInput {
   password?: string | null;
 }
 
+export interface GetMyOrdersInput {
+  page?: number | null;
+}
+
 export interface GetRestaurantInput {
   slug: string;
 }

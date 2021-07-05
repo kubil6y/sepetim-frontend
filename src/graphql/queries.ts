@@ -93,3 +93,62 @@ export const GET_RESTAURANT_QUERY = gql`
   }
   ${RESTAURANT_FRAGMENT}
 `;
+
+export const GET_FIVE_RESTAURANTS = gql`
+  query getFiveRestaurantsQuery {
+    getFiveRestaurants {
+      ok
+      error
+      restaurants {
+        id
+        coverImg
+        slug
+        name
+      }
+    }
+  }
+`;
+
+export const GET_TOP_FIVE_RESTAURANTS_QUERY = gql`
+  query getTopFiveRestaurantsQuery {
+    getTopFiveRestaurants {
+      ok
+      error
+      ratings {
+        service
+        taste
+        speed
+        restaurant {
+          ...RestaurantParts
+        }
+      }
+    }
+  }
+  ${RESTAURANT_FRAGMENT}
+`;
+
+export const GET_MY_ORDERS_QUERY = gql`
+  query getMyOrdersQuery($input: GetMyOrdersInput!) {
+    getMyOrders(input: $input) {
+      ok
+      error
+      meta {
+        ...MetaParts
+      }
+      results {
+        createdAt
+        total
+        rated
+        restaurant {
+          logoImg
+          name
+          category {
+            slug
+            name
+          }
+        }
+      }
+    }
+  }
+  ${META_FRAGMENT}
+`;

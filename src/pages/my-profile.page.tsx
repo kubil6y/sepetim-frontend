@@ -37,9 +37,9 @@ export const MyProfilePage = () => {
       <Helmet>
         <title>Sepetim | My Profile</title>
       </Helmet>
-      <div className='p-2 cst-container'>
+      <div className='p-2 mt-6 cst-container'>
         <div className='p-5 border border-gray-500 space-y-4'>
-          <h1 className='cst-title underline'>User Profile</h1>
+          <h1 className='underline cst-title'>User Profile</h1>
 
           <div className='w-full'>
             <h2 className='cst-profile-title'>First Name</h2>
