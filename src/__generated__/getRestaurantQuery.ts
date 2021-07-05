@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetRestaurantInput, DishTypeEnum } from "./globalTypes";
+import { GetRestaurantInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: getRestaurantQuery
@@ -18,17 +18,19 @@ export interface getRestaurantQuery_getRestaurant_restaurant_restaurantRating {
 
 export interface getRestaurantQuery_getRestaurant_restaurant_menu_options {
   __typename: "DishOption";
+  id: number;
   name: string;
   extra: number;
+  calorie: number;
 }
 
 export interface getRestaurantQuery_getRestaurant_restaurant_menu {
   __typename: "Dish";
   id: number;
   name: string;
-  description: string | null;
+  image: string;
+  calorie: number;
   basePrice: number;
-  dishType: DishTypeEnum | null;
   options: getRestaurantQuery_getRestaurant_restaurant_menu_options[] | null;
 }
 

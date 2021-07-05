@@ -122,9 +122,7 @@ export const EditProfilePage = () => {
       </Helmet>
       <div className='p-2  cst-container'>
         <div className='p-5 border border-gray-500 space-y-4'>
-          <h1 className='text-2xl font-bold text-red-500 underline'>
-            Edit Profile
-          </h1>
+          <h1 className='cst-title underline'>Edit Profile</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-6'>
             {/* FIRST NAME */}

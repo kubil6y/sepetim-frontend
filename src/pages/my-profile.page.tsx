@@ -39,9 +39,7 @@ export const MyProfilePage = () => {
       </Helmet>
       <div className='p-2 cst-container'>
         <div className='p-5 border border-gray-500 space-y-4'>
-          <h1 className='text-2xl font-bold text-red-500 underline'>
-            User Profile
-          </h1>
+          <h1 className='cst-title underline'>User Profile</h1>
 
           <div className='w-full'>
             <h2 className='cst-profile-title'>First Name</h2>

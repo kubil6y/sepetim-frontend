@@ -22,3 +22,5 @@ export * from './ErrorQuery';
 export * from './GenericError';
 export * from './Pagination';
 export * from './PreviousButton';
+export * from './DishCard';
+export * from './OrderButton';

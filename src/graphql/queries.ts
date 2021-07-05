@@ -78,12 +78,14 @@ export const GET_RESTAURANT_QUERY = gql`
         menu {
           id
           name
-          description
+          image
+          calorie
           basePrice
-          dishType
           options {
+            id
             name
             extra
+            calorie
           }
         }
       }

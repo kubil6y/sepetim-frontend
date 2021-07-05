@@ -47,5 +47,5 @@ export const SlideShow = () => {
 */
 
 export const SlideShow = () => {
-  return <h1>merhaba</h1>;
+  return <h1>slide show here</h1>;
 };

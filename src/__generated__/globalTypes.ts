@@ -7,12 +7,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-export enum DishTypeEnum {
-  Beverage = "Beverage",
-  Dessert = "Dessert",
-  Food = "Food",
-}
-
 export enum UserRoleEnum {
   Admin = "Admin",
   Client = "Client",

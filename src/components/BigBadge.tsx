@@ -17,7 +17,7 @@ export const BigBadge: FC<IBigBadgeProps> = ({ categorySlug }) => {
       </Helmet>
       <div className='cst-container select-none'>
         <h3
-          className='inline-block p-1 px-2 py-1 capitalize'
+          className='inline-block p-1 px-2 py-1 capitalize shadow'
           style={{
             backgroundColor: categoryColors?.bg,
             color: categoryColors?.fg,
