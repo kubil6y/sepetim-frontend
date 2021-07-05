@@ -56,7 +56,7 @@ export const RestaurantDetails = () => {
 
           {/* RESTAURANT TITLE */}
           <div className='absolute left-5 bottom-5 space-y-1'>
-            <h1 className='md:text-4xl font-bold text-white capitalize text-xl'>
+            <h1 className='text-xl font-bold text-white capitalize md:text-4xl'>
               {data.getRestaurant.restaurant?.name} (
               {data.getRestaurant.restaurant?.district})
             </h1>
@@ -96,7 +96,11 @@ export const RestaurantDetails = () => {
           ) : (
             <>
               {data?.getRestaurant?.restaurant?.menu.map((dish) => (
-                <DishCard dish={dish} key={dish.id} />
+                <DishCard
+                  dish={dish}
+                  key={dish.id}
+                  restaurantId={data?.getRestaurant?.restaurant?.id!}
+                />
               ))}
             </>
           )}

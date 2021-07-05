@@ -4,6 +4,14 @@ import {
   getRestaurantQuery_getRestaurant_restaurant_menu_options,
 } from '../__generated__/getRestaurantQuery';
 import { OrderButton } from './OrderButton';
+import { useApolloClient, useMutation } from '@apollo/client';
+import { CREATE_ORDER_MUTATION } from '../graphql';
+import {
+  createOrderMutation,
+  createOrderMutationVariables,
+} from '../__generated__/createOrderMutation';
+import { useHistory } from 'react-router-dom';
+import { paths } from '../constants';
 
 const nums = [1, 2, 3, 4, 5];
 
@@ -17,37 +25,74 @@ const initialOption: getRestaurantQuery_getRestaurant_restaurant_menu_options = 
 
 interface IDishProps {
   dish: getRestaurantQuery_getRestaurant_restaurant_menu;
+  restaurantId: number;
 }
 
 export const DishCard: FC<IDishProps> = ({
-  dish: { name, image, calorie, basePrice, options },
+  dish: { id: dishId, name, image, calorie, basePrice, options },
+  restaurantId,
 }) => {
+  const client = useApolloClient();
+  // history
+  const history = useHistory();
   // dishOptionId state
-  const [optionId, setOptionId] = useState<number | undefined>(undefined);
+  const [dishOptionId, setDishOptionId] = useState<number | undefined>(
+    undefined
+  );
   const [option, setOption] = useState(initialOption);
+  // quantity state;
+  const [quantity, setQuantity] = useState(1);
+
+  const onCompleted = (data: createOrderMutation) => {
+    const {
+      createOrder: { ok },
+    } = data;
+
+    if (ok) {
+      history.push(paths.home);
+    }
+  };
+
+  const [createOrder, { loading }] = useMutation<
+    createOrderMutation,
+    createOrderMutationVariables
+  >(CREATE_ORDER_MUTATION, { onCompleted });
 
   useEffect(() => {
     const main = () => {
       if (options) {
-        if (optionId === 0) {
+        if (dishOptionId === 0) {
           return setOption(initialOption);
         }
-        const target = options.find((option) => option.id === optionId);
+        const target = options.find((option) => option.id === dishOptionId);
         if (target) {
           setOption(target);
         }
       }
     };
     main();
-  }, [optionId]);
+  }, [dishOptionId, options]);
 
-  // quantity state;
-  const [qty, setQty] = useState(1);
+  const totalPrice = (basePrice + option.extra) * quantity;
+  const totalCalories = (calorie + option.calorie) * quantity;
 
-  console.log(option);
-
-  const totalPrice = (basePrice + option.extra) * qty;
-  const totalCalories = (calorie + option.calorie) * qty;
+  const handleOrder = () => {
+    if (loading) return;
+    createOrder({
+      variables: {
+        input: {
+          restaurantId,
+          items: [
+            {
+              quantity,
+              dishId,
+              ...(dishOptionId && { dishOptionId }),
+            },
+          ],
+        },
+      },
+    });
+  };
 
   return (
     <div className='flex items-center justify-between p-4 border border-gray-200 hover:border-gray-500 cst-transition'>
@@ -60,8 +105,8 @@ export const DishCard: FC<IDishProps> = ({
               <p className='text-sm text-gray-700'>Options</p>
               <select
                 className='w-3/5 text-xs tracking-wide lowercase'
-                value={optionId}
-                onChange={(e) => setOptionId(+e.target.value)}
+                value={dishOptionId}
+                onChange={(e) => setDishOptionId(+e.target.value)}
               >
                 <option
                   className='flex items-center justify-center w-full'
@@ -76,7 +121,7 @@ export const DishCard: FC<IDishProps> = ({
                     extra,
                     calorie,
                   }: getRestaurantQuery_getRestaurant_restaurant_menu_options) => (
-                    <option value={id}>
+                    <option value={id} key={id}>
                       {name} • +${extra} • +{calorie} Cal
                     </option>
                   )
@@ -92,39 +137,30 @@ export const DishCard: FC<IDishProps> = ({
               ${totalPrice} • {totalCalories} Cal.
             </p>
 
-            <select
-              className='text-xs tracking-wide lowercase'
-              value={qty}
-              onChange={(e) => setQty(+e.target.value)}
-            >
-              {nums.map((num) => (
-                <option value={num}>{num}</option>
-              ))}
-            </select>
+            <div>
+              <p className='block text-sm text-gray-700 sm:hidden'>Quantity</p>
+              <select
+                className='text-xs tracking-wide lowercase'
+                value={quantity}
+                onChange={(e) => setQuantity(+e.target.value)}
+              >
+                {nums.map((num) => (
+                  <option value={num} key={num}>
+                    {num}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <OrderButton
-            inner='add'
-            onClick={() => console.log('order button clicked')}
-          />
+          <OrderButton inner='order' onClick={handleOrder} />
         </div>
       </div>
       <div className='w-1/3'>
-        <img src={image} alt={`${name} image`} className='' />
+        <img src={image} alt={`${name}`} />
       </div>
     </div>
   );
 };
 
-/*
-
-        {options && options?.length > 0 && (
-          <select {...register('options')} {...rest}>
-            {options.map((option) => (
-              <option key={option.name} value={option.extra}>
-                {option.name} {option.extra}
-              </option>
-            ))}
-          </select>
-        )}
- */
+// TODO push new order into user orders in main page.

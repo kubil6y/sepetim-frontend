@@ -5,3 +5,5 @@ export type CategoryType =
   | 'kebab'
   | 'vegan'
   | 'beverages';
+
+export enum ActionType {}

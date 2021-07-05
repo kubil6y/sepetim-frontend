@@ -12,6 +12,17 @@ export enum UserRoleEnum {
   Client = "Client",
 }
 
+export interface CreateOrderInput {
+  restaurantId: number;
+  items: CreateOrderItemInputType[];
+}
+
+export interface CreateOrderItemInputType {
+  dishId: number;
+  dishOptionId?: number | null;
+  quantity: number;
+}
+
 export interface CreateUserInput {
   username: string;
   firstName: string;
