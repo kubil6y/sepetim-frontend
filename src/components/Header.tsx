@@ -11,7 +11,7 @@ import { dropdownAnim } from '../animations';
 import { isLoggedInVar } from '../apollo';
 import { useReactiveVar } from '@apollo/client';
 import { useClickOutside } from '../hooks';
-import { AiOutlineGithub, AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineLogin } from 'react-icons/ai';
 import { Github } from './Github';
 
 const dropdownLinks = [
