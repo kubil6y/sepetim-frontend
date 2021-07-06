@@ -14,15 +14,13 @@ export const SlideShow = () => {
   if (loading) return <Loader />;
   if (error || !data?.getFiveRestaurants?.restaurants) return <ErrorQuery />;
 
-  console.log(data);
-
   return (
     <div className='flex items-center justify-center'>
       <Carousel autoPlay showThumbs={false} infiniteLoop>
         {data?.getFiveRestaurants?.restaurants &&
           data?.getFiveRestaurants?.restaurants.map((restaurant) => (
             <div key={restaurant?.id}>
-              <img src={restaurant?.coverImg} />
+              <img src={restaurant?.coverImg} alt='restaurant coverImg' />
               <Link to={`/restaurants/${restaurant?.slug}`}>
                 <p className='cursor-pointer legend'>{restaurant?.name}</p>
               </Link>
@@ -32,29 +30,3 @@ export const SlideShow = () => {
     </div>
   );
 };
-
-//<div>
-//<img src='assets/1.jpeg' />
-//<p className='legend'>Legend 1</p>
-//</div>
-
-/*
-
-            <Link
-              to={`/restaurants/${restaurant?.slug}`}
-              key={restaurant?.slug}
-            >
-
-      <Carousel showArrows={true} autoPlay>
-        {data?.getFiveRestaurants?.restaurants &&
-          data?.getFiveRestaurants?.restaurants.length > 0 &&
-          data?.getFiveRestaurants?.restaurants.map((restaurant) => (
-            <Link to={`/restaurants/${restaurant?.slug}`}>
-              <div>
-                <img src={restaurant?.coverImg}/>
-                <p className='legend'>Legend 1</p>
-              </div>
-            </Link>
-          ))}
-      </Carousel>
-   */

@@ -36,7 +36,6 @@ export const RestaurantDetails = () => {
     return <GenericError message='Restaurant does not exist' />;
   }
 
-  console.log(data);
   return (
     <>
       <Helmet>

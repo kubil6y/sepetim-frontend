@@ -4,7 +4,7 @@ import {
   getRestaurantQuery_getRestaurant_restaurant_menu_options,
 } from '../__generated__/getRestaurantQuery';
 import { OrderButton } from './OrderButton';
-import { useApolloClient, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { CREATE_ORDER_MUTATION } from '../graphql';
 import {
   createOrderMutation,
@@ -32,7 +32,6 @@ export const DishCard: FC<IDishProps> = ({
   dish: { id: dishId, name, image, calorie, basePrice, options },
   restaurantId,
 }) => {
-  const client = useApolloClient();
   // history
   const history = useHistory();
   // dishOptionId state
@@ -77,6 +76,7 @@ export const DishCard: FC<IDishProps> = ({
   const totalCalories = (calorie + option.calorie) * quantity;
 
   const handleOrder = () => {
+    if (loading) return;
     createOrder({
       variables: {
         input: {

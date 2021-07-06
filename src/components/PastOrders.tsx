@@ -39,6 +39,7 @@ export const PastOrders: FC = () => {
           <img
             className='block w-8 h-8 max-w-full'
             src={el?.restaurant?.logoImg}
+            alt='restaurant logo'
           />
           <p className='text-sm'>{el?.restaurant?.name}</p>
 
