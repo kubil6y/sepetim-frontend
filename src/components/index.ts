@@ -25,3 +25,4 @@ export * from './PreviousButton';
 export * from './DishCard';
 export * from './OrderButton';
 export * from './PastOrders';
+export * from './Github';

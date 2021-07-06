@@ -11,7 +11,8 @@ import { dropdownAnim } from '../animations';
 import { isLoggedInVar } from '../apollo';
 import { useReactiveVar } from '@apollo/client';
 import { useClickOutside } from '../hooks';
-import { AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineGithub, AiOutlineLogin } from 'react-icons/ai';
+import { Github } from './Github';
 
 const dropdownLinks = [
   { id: 0, to: paths.myProfile, inner: 'My Profile' },
@@ -51,6 +52,8 @@ export const Header: FC = () => {
 
         {!smallScreen && <Search />}
 
+        <Github />
+
         {isLoggedIn ? (
           <div
             ref={dropdownRef}
@@ -89,7 +92,7 @@ export const Header: FC = () => {
             </AnimatePresence>
           </div>
         ) : (
-          <Link className='ml-2 md:ml-10' to={paths.login}>
+          <Link to={paths.login}>
             <Circle>
               <AiOutlineLogin />
             </Circle>
@@ -103,3 +106,4 @@ export const Header: FC = () => {
 };
 
 // TODO order bucket length etc. will be added next to user when logged in
+//className='ml-2 md:ml-10'

@@ -26,6 +26,7 @@ export const PastOrders: FC = () => {
   if (!isLoggedIn) return null;
   if (loading) return <Loader />;
   if (error) return <GenericError message='Something went wrong' />;
+  if (data?.getMyOrders?.results?.length === 0) return null;
 
   return (
     <div

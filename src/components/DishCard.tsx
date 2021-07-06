@@ -101,7 +101,7 @@ export const DishCard: FC<IDishProps> = ({
   return (
     <div className='flex items-center justify-between p-4 border border-gray-200 hover:border-gray-500 cst-transition'>
       <div className='flex flex-col self-stretch justify-between w-2/3'>
-        <p className='text-lg font-semibold'>Some menu item name</p>
+        <p className='text-lg font-semibold capitalize'>{name}</p>
 
         <div>
           {options && options?.length > 0 && (
@@ -163,7 +163,7 @@ export const DishCard: FC<IDishProps> = ({
             <motion.button
               whileTap={{ scale: 0.96 }}
               onClick={() => history.push(paths.login)}
-              className='bg-gray-800 cursor-pointer px-2 py-1 capitalize hover:bg-gray-700 text-center text-white rounded-full shadow flex items-center justify-center text-xs tracking-wide font-bold space-x-2 cst-transition sm:mt-0 mt-2 focus:outline-none'
+              className='flex items-center justify-center px-2 py-1 mt-2 text-xs font-bold tracking-wide text-center text-white capitalize bg-gray-800 rounded-full shadow cursor-pointer hover:bg-gray-700 space-x-2 cst-transition sm:mt-0 focus:outline-none'
             >
               <div className='flex items-center justify-center w-4 h-4 text-black bg-white rounded-full'>
                 <AiOutlineLogin className='w-3 h-3' />

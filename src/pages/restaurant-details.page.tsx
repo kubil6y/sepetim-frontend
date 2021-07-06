@@ -16,6 +16,7 @@ import {
 } from '../__generated__/getRestaurantQuery';
 import { Helmet } from 'react-helmet-async';
 import { pageAnimation, slider, sliderContainer } from '../animations';
+import { Link } from 'react-router-dom';
 
 interface IParams {
   slug: string;
@@ -107,7 +108,12 @@ export const RestaurantDetails = () => {
         <div className='mt-6 mb-24 grid grid-cols-1 md:grid-cols-2 gap-3'>
           {data?.getRestaurant?.restaurant?.menu &&
           data?.getRestaurant?.restaurant?.menu.length === 0 ? (
-            <div>no menu here</div>
+            <Link
+              to='/restaurants/mcdonalds-vg8gijrcu5a'
+              className='py-2 text-center cst-link text-sm'
+            >
+              McDonalds gibisi yok :)
+            </Link>
           ) : (
             <>
               {data?.getRestaurant?.restaurant?.menu.map((dish) => (

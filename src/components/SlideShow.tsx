@@ -16,7 +16,7 @@ export const SlideShow = () => {
 
   return (
     <div className='flex items-center justify-center'>
-      <Carousel autoPlay showThumbs={false} infiniteLoop>
+      <Carousel autoPlay showThumbs={false} infiniteLoop dynamicHeight={false}>
         {data?.getFiveRestaurants?.restaurants &&
           data?.getFiveRestaurants?.restaurants.map((restaurant) => (
             <div key={restaurant?.id}>
