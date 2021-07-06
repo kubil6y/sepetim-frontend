@@ -1,4 +1,8 @@
-export const baseUrl = 'http://localhost:5000/graphql';
+export const __prod__ = process.env.NODE_ENV === 'production';
+export const baseUrl = __prod__
+  ? 'https://sepetim-clone.herokuapp.com/graphql'
+  : 'http://localhost:5000/graphql';
+
 export const LOCALSTORAGE_TOKEN = 'token';
 
 export const paths = {
