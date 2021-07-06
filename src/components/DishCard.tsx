@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   getRestaurantQuery_getRestaurant_restaurant_menu,
   getRestaurantQuery_getRestaurant_restaurant_menu_options,
 } from '../__generated__/getRestaurantQuery';
 import { OrderButton } from './OrderButton';
-import { useMutation } from '@apollo/client';
+import { useMutation, useReactiveVar } from '@apollo/client';
 import { CREATE_ORDER_MUTATION } from '../graphql';
 import {
   createOrderMutation,
@@ -12,6 +13,8 @@ import {
 } from '../__generated__/createOrderMutation';
 import { useHistory } from 'react-router-dom';
 import { paths } from '../constants';
+import { isLoggedInVar } from '../apollo';
+import { AiOutlineLogin } from 'react-icons/ai';
 
 const nums = [1, 2, 3, 4, 5];
 
@@ -32,6 +35,8 @@ export const DishCard: FC<IDishProps> = ({
   dish: { id: dishId, name, image, calorie, basePrice, options },
   restaurantId,
 }) => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
+
   // history
   const history = useHistory();
   // dishOptionId state
@@ -152,7 +157,20 @@ export const DishCard: FC<IDishProps> = ({
             </div>
           </div>
 
-          <OrderButton inner='order' onClick={handleOrder} />
+          {isLoggedIn ? (
+            <OrderButton inner='order' onClick={handleOrder} />
+          ) : (
+            <motion.button
+              whileTap={{ scale: 0.96 }}
+              onClick={() => history.push(paths.login)}
+              className='bg-gray-800 cursor-pointer px-2 py-1 capitalize hover:bg-gray-700 text-center text-white rounded-full shadow flex items-center justify-center text-xs tracking-wide font-bold space-x-2 cst-transition sm:mt-0 mt-2 focus:outline-none'
+            >
+              <div className='flex items-center justify-center w-4 h-4 text-black bg-white rounded-full'>
+                <AiOutlineLogin className='w-3 h-3' />
+              </div>
+              <p>Login</p>
+            </motion.button>
+          )}
         </div>
       </div>
       <div className='w-1/3'>

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useReactiveVar } from '@apollo/client';
 import { GET_MY_ORDERS_QUERY } from '../graphql';
 import {
   getMyOrdersQuery,
@@ -9,8 +9,10 @@ import { GenericError } from './GenericError';
 import { Loader } from './Loader';
 import { Pagination } from './Pagination';
 import { Badge } from './Badge';
+import { isLoggedInVar } from '../apollo';
 
 export const PastOrders: FC = () => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
   const [page, setPage] = useState(1);
   const { data, error, loading } = useQuery<
     getMyOrdersQuery,
@@ -21,6 +23,7 @@ export const PastOrders: FC = () => {
     },
   });
 
+  if (!isLoggedIn) return null;
   if (loading) return <Loader />;
   if (error) return <GenericError message='Something went wrong' />;
 
