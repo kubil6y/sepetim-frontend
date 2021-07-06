@@ -57,7 +57,7 @@ export const DishCard: FC<IDishProps> = ({
     }
   };
 
-  const [_createOrder] = useMutation<
+  const [createOrder] = useMutation<
     createOrderMutation,
     createOrderMutationVariables
   >(CREATE_ORDER_MUTATION, { onCompleted });
@@ -92,7 +92,9 @@ export const DishCard: FC<IDishProps> = ({
       ],
     });
 
+    console.log(typeof createOrder); // lmao, free db so you can not eat!
     history.push(paths.home);
+
     //createOrder({
     //variables: {
     //input: {
