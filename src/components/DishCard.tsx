@@ -57,7 +57,7 @@ export const DishCard: FC<IDishProps> = ({
     }
   };
 
-  const [createOrder, { loading }] = useMutation<
+  const [_createOrder] = useMutation<
     createOrderMutation,
     createOrderMutationVariables
   >(CREATE_ORDER_MUTATION, { onCompleted });
@@ -81,21 +81,32 @@ export const DishCard: FC<IDishProps> = ({
   const totalCalories = (calorie + option.calorie) * quantity;
 
   const handleOrder = () => {
-    if (loading) return;
-    createOrder({
-      variables: {
-        input: {
-          restaurantId,
-          items: [
-            {
-              quantity,
-              dishId,
-              ...(dishOptionId && { dishOptionId }),
-            },
-          ],
+    console.log({
+      restaurantId,
+      items: [
+        {
+          quantity,
+          dishId,
+          ...(dishOptionId && { dishOptionId }),
         },
-      },
+      ],
     });
+
+    history.push(paths.home);
+    //createOrder({
+    //variables: {
+    //input: {
+    //restaurantId,
+    //items: [
+    //{
+    //quantity,
+    //dishId,
+    //...(dishOptionId && { dishOptionId }),
+    //},
+    //],
+    //},
+    //},
+    //});
   };
 
   return (
