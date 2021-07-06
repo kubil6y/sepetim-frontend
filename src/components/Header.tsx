@@ -57,7 +57,7 @@ export const Header: FC = () => {
         {isLoggedIn ? (
           <div
             ref={dropdownRef}
-            className='relative z-10 ml-2 md:ml-10'
+            className='relative z-10'
             onClick={() => setDropdownShow((st) => !st)}
           >
             <Circle>
